@@ -2,10 +2,27 @@ import React from "react";
 
 const DishCard = ({ dish, setRankings, rankings }) => {
   const ratings = ["1", "2", "3"];
+
   const handleRank = (e) => {
-    const values = e.currentTarget.id.split("-");
-    // console.log(values);
-    setRankings((prev) => ({ ...prev, [values[0]]: values[1] }));
+    const [dishRank, dishName] = e.currentTarget.id.split("-");
+    console.log(dishRank, dishName);
+
+    let isDishPresent = Object.keys(rankings).filter(
+      (rank) => rankings[rank] === dishName
+    );
+    console.log("keys", isDishPresent);
+    if (isDishPresent.length > 0) {
+      setRankings((prev) => ({
+        ...prev,
+        [isDishPresent]: null,
+        [dishRank]: dishName,
+      }));
+    } else {
+      setRankings((prev) => ({
+        ...prev,
+        [dishRank]: dishName,
+      }));
+    }
   };
   return (
     <>
@@ -25,7 +42,7 @@ const DishCard = ({ dish, setRankings, rankings }) => {
                   id={`${rating}-${dish.dishName}`}
                   key={rating}
                   onClick={handleRank}
-                  className="inline-block px-6 py-4  text-black  rounded-[50%] hover:bg-indigo-300 hover:shadow-lg hover:outline-none shadow-md transition duration-150 ease-in-out"
+                  className={`inline-block px-6 py-4  text-black  rounded-[50%] hover:bg-indigo-300 hover:shadow-lg hover:outline-none shadow-md transition duration-150 ease-in-out `}
                 >
                   {rating}
                 </div>

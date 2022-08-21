@@ -7,7 +7,7 @@ const Navbar = () => {
     const isUserLoggedIn = localStorage.getItem("user");
 
     if (isUserLoggedIn) {
-      console.log(isUserLoggedIn);
+      console.log("isUserLoggedIn", isUserLoggedIn);
     } else navigate("/");
   }, []);
 
@@ -29,7 +29,7 @@ const Navbar = () => {
           <div className="flex space-x-2 md:space-x-10 ">
             <h1 className="p-2 ">
               {" "}
-              hey, {localStorage.getItem("user").toUpperCase()}
+              hey, {localStorage.getItem("user")?.toUpperCase()}
             </h1>
             <button
               className="bg-indigo-500 p-2 text-white"

@@ -1,7 +1,12 @@
 import React from "react";
 
-const DishCard = ({ dish }) => {
+const DishCard = ({ dish, setRankings, rankings }) => {
   const ratings = ["1", "2", "3"];
+  const handleRank = (e) => {
+    const values = e.currentTarget.id.split("-");
+    // console.log(values);
+    setRankings((prev) => ({ ...prev, [values[0]]: values[1] }));
+  };
   return (
     <>
       <div className="rounded-lg shadow-lg bg-white max-w-sm  mx-5 mb-10">
@@ -14,15 +19,16 @@ const DishCard = ({ dish }) => {
             {dish.description}
           </p>
           <div className="flex justify-around">
-            {ratings.map((rating, idx) => (
+            {ratings.map((rating) => (
               <>
-                <button
-                  type="button"
-                  key={idx}
-                  className=" inline-block px-6 py-2.5  text-black  rounded shadow-md hover:bg-indigo-100 hover:shadow-lg   active:bg-indigo-300 active:shadow-lg transition duration-150 ease-in-out"
+                <div
+                  id={`${rating}-${dish.dishName}`}
+                  key={rating}
+                  onClick={handleRank}
+                  className="inline-block px-6 py-4  text-black  rounded-[50%] hover:bg-indigo-300 hover:shadow-lg hover:outline-none shadow-md transition duration-150 ease-in-out"
                 >
                   {rating}
-                </button>
+                </div>
               </>
             ))}
           </div>
@@ -34,4 +40,4 @@ const DishCard = ({ dish }) => {
 
 export default DishCard;
 
-// focus:bg-blue-700 focus:shadow-lg focus:outline-none
+// focus:bg-blue-700 focus:shadow-lg focus:outline-none active:bg-indigo-300 active:shadow-lg

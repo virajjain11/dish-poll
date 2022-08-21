@@ -4,23 +4,23 @@ const DishCard = ({ dish, setRankings, rankings }) => {
   const ratings = ["1", "2", "3"];
 
   const handleRank = (e) => {
-    const [dishRank, dishName] = e.currentTarget.id.split("-");
+    const [dishRank, dishId, dishName] = e.currentTarget.id.split("-");
     console.log(dishRank, dishName);
 
     let isDishPresent = Object.keys(rankings).filter(
-      (rank) => rankings[rank] === dishName
+      (rank) => rankings[rank] === `${dishId}-${dishName}`
     );
     console.log("keys", isDishPresent);
     if (isDishPresent.length > 0) {
       setRankings((prev) => ({
         ...prev,
         [isDishPresent]: null,
-        [dishRank]: dishName,
+        [dishRank]: `${dishId}-${dishName}`,
       }));
     } else {
       setRankings((prev) => ({
         ...prev,
-        [dishRank]: dishName,
+        [dishRank]: `${dishId}-${dishName}`,
       }));
     }
   };
@@ -39,10 +39,16 @@ const DishCard = ({ dish, setRankings, rankings }) => {
             {ratings.map((rating) => (
               <>
                 <div
-                  id={`${rating}-${dish.dishName}`}
+                  id={`${rating}-${dish.id}-${dish.dishName}`}
                   key={rating}
                   onClick={handleRank}
-                  className={`inline-block px-6 py-4  text-black  rounded-[50%] hover:bg-indigo-300 hover:shadow-lg hover:outline-none shadow-md transition duration-150 ease-in-out `}
+                  className={`inline-block px-6 py-4  text-black  rounded-[50%] hover:bg-indigo-300 hover:shadow-lg hover:outline-none shadow-md transition duration-150 ease-in
+                    ${
+                      rankings[rating] === `${dish.id}-${dish.dishName}`
+                        ? " bg-indigo-400 "
+                        : "bg-white "
+                    }
+                    `}
                 >
                   {rating}
                 </div>

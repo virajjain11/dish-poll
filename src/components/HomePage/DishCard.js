@@ -7,16 +7,25 @@ const DishCard = ({ dish, setRankings, rankings }) => {
     const [dishRank, dishId, dishName] = e.currentTarget.id.split("-");
     console.log(dishRank, dishName);
 
-    let isDishPresent = Object.keys(rankings).filter(
+    let [isDishPresent] = Object.keys(rankings).filter(
       (rank) => rankings[rank] === `${dishId}-${dishName}`
     );
     console.log("keys", isDishPresent);
-    if (isDishPresent.length > 0) {
-      setRankings((prev) => ({
-        ...prev,
-        [isDishPresent]: null,
-        [dishRank]: `${dishId}-${dishName}`,
-      }));
+    if (isDishPresent) {
+      //add remove rank option if clicked on same button
+      if (isDishPresent === dishRank) {
+        console.log("sameee button clicked...remove rannk");
+        setRankings((prev) => ({
+          ...prev,
+          [dishRank]: null,
+        }));
+      } else {
+        setRankings((prev) => ({
+          ...prev,
+          [isDishPresent]: null,
+          [dishRank]: `${dishId}-${dishName}`,
+        }));
+      }
     } else {
       setRankings((prev) => ({
         ...prev,
@@ -32,6 +41,9 @@ const DishCard = ({ dish, setRankings, rankings }) => {
         </h5>
         <img className="rounded-b-lg w-full " src={dish.image} alt="" />
         <div className="p-6">
+          <p className="text-gray-700  pb-2 mb-4 border-b  text-center  border-gray-300">
+            ID:{dish.id}
+          </p>
           <p className="text-gray-700  pb-2 mb-4 border-b min-h-[130px] text-center  border-gray-300">
             {dish.description}
           </p>
@@ -55,6 +67,9 @@ const DishCard = ({ dish, setRankings, rankings }) => {
               </>
             ))}
           </div>
+          {/* <div className="text-center tracking-widest mt-4 mx-auto max-w-[80px] px-4 py-2  bg-pink-400">
+            CLEAR
+          </div> */}
         </div>
       </div>
     </>

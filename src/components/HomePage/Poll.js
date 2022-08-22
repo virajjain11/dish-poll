@@ -15,24 +15,24 @@ const Poll = () => {
   };
   const [rankings, setRankings] = useState(initialState);
   useEffect(() => {
-    const userName = localStorage.getItem("user");
-    if (userName) {
+    const currentUser = localStorage.getItem("user");
+    if (currentUser) {
       const getUserData = localStorage.getItem("userData");
       if (!getUserData) {
         let newUserData = {
-          [userName]: initialState,
+          [currentUser]: initialState,
         };
-        console.log("no users found", getUserData);
+        console.log("no userDataFound found...creating one", getUserData);
         localStorage.setItem("userData", JSON.stringify(newUserData));
       }
-      console.log(" getUserData found", JSON.parse(getUserData));
-      if (!JSON.parse(getUserData)?.[userName]) {
+      console.log(" getUserData exists", JSON.parse(getUserData));
+      if (!JSON.parse(getUserData)?.[currentUser]) {
         console.log("no userData with current user Logged....create a db");
-        const newUsersData = {
+        const modifyUserData = {
           ...JSON.parse(getUserData),
-          [userName]: initialState,
+          [currentUser]: initialState,
         };
-        localStorage.setItem("userData", JSON.stringify(newUsersData));
+        localStorage.setItem("userData", JSON.stringify(modifyUserData));
       }
       console.log(
         " getUserData found with current user",

@@ -38,6 +38,15 @@ const Poll = () => {
         " getUserData found with current user",
         JSON.parse(getUserData)
       );
+
+      const updateUserDataOnRankClicked = {
+        ...JSON.parse(getUserData),
+        [currentUser]: rankings,
+      };
+      localStorage.setItem(
+        "userData",
+        JSON.stringify(updateUserDataOnRankClicked)
+      );
     }
   }, [rankings]);
 

@@ -40,11 +40,24 @@ const Result = () => {
       }
     });
   });
+  const sortedDishes = Object.entries(dishPointsData).sort(
+    (a, b) => b[1] - a[1]
+  );
+  // .filter((el, idx) => idx < 3);
+  console.log(dishPointsData);
 
   return (
     <div>
       <Navbar />
       <h1>Result</h1>
+      {sortedDishes.length > 0 &&
+        sortedDishes.map(([dishName, points], idx) => (
+          <>
+            <h1> Id: {dishName.split("-")[0]}</h1>
+            <h1> Name: {dishName.split("-")[1]}</h1>
+            <h1>points: {points}</h1>
+          </>
+        ))}
     </div>
   );
 };

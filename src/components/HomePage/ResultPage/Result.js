@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../../Navbar/Navbar";
+import PointsTable from "./PointsTable";
 
 const Result = () => {
   const [rawUserData, setRawUserData] = useState([]);
@@ -50,14 +51,7 @@ const Result = () => {
     <div>
       <Navbar />
       <h1>Result</h1>
-      {sortedDishes.length > 0 &&
-        sortedDishes.map(([dishName, points], idx) => (
-          <>
-            <h1> Id: {dishName.split("-")[0]}</h1>
-            <h1> Name: {dishName.split("-")[1]}</h1>
-            <h1>points: {points}</h1>
-          </>
-        ))}
+      <PointsTable DishData={sortedDishes} />
     </div>
   );
 };

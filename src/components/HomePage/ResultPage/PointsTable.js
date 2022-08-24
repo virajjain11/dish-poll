@@ -1,7 +1,6 @@
 import React from "react";
 
 const PointsTable = ({ DishData }) => {
-  console.log("DishData", DishData);
   return (
     <>
       {DishData.length > 0 ? (
@@ -9,7 +8,7 @@ const PointsTable = ({ DishData }) => {
           <div className="w-full max-w-2xl mx-auto text-gray-600 px-4 bg-white shadow-lg rounded-sm border border-gray-200">
             <header className="px-5 py-4 border-b border-gray-200">
               <h2 className="font-semibold text-lg tracking-wide uppercase text-gray-800 text-center">
-                Points Table
+                Poll results{" "}
               </h2>
             </header>
             <div className="p-3">

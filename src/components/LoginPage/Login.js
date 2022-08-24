@@ -78,7 +78,7 @@ const Login = () => {
         <div className="flex container justify-center py-12 px-6 items-center flex-wrap h-full text-gray-800">
           <div className=" bg-white shadow-lg rounded-lg">
             <div className="bg-indigo-500 rounded-t-lg">
-              <h4 className="text-xl font-semibold p-4 text-center">
+              <h4 className="text-xl font-semibold p-4 text-white text-center uppercase">
                 Dish POLL{" "}
               </h4>
             </div>

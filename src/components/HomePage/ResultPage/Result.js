@@ -36,11 +36,9 @@ const Result = ({ setIsActive }) => {
   const sortedDishes = Object.entries(dishPointsData).sort(
     (a, b) => b[1] - a[1]
   );
-  console.log(dishPointsData);
 
   return (
-    <div className="mt-4">
-      <h1 className="text-center mb-2 text-lg text-gray-800">Poll Results</h1>
+    <div className="mt-10">
       <PointsTable DishData={sortedDishes} />
     </div>
   );

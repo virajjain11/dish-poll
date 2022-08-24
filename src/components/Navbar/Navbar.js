@@ -10,8 +10,6 @@ const Navbar = ({ isActive, setIsActive }) => {
     if (!isUserLoggedIn) navigate("/login");
   }, []);
 
-  // if (!userName) navigate("/login");
-
   const logoutUser = () => {
     localStorage.removeItem("user");
     navigate("/login");
@@ -59,11 +57,11 @@ const Navbar = ({ isActive, setIsActive }) => {
               </div>
 
               <div className="flex space-x-2 md:space-x-10 justify-around min-w-[200px] ">
-                <h1 className="p-2 ">
+                <h1 className="p-2">
                   {localStorage.getItem("user")?.toUpperCase()}
                 </h1>
                 <button
-                  className="bg-indigo-500 hover:bg-indigo-600 active:text-gray-900 active:bg-indigo-100 px-4 py-2 uppercase text-white rounded-sm"
+                  className="bg-indigo-500 hover:bg-indigo-600 active:text-gray-900 active:bg-indigo-100 px-2 py-1 sm:px-4 sm:py-2 uppercase text-white rounded-sm"
                   onClick={logoutUser}
                 >
                   Logout

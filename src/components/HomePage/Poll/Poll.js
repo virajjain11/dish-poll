@@ -19,22 +19,15 @@ const Poll = ({ setIsActive }) => {
         let newUserData = {
           [currentUser]: initialState,
         };
-        console.log("no userDataFound found...creating one", getUserData);
         localStorage.setItem("userData", JSON.stringify(newUserData));
       }
-      console.log(" getUserData exists", JSON.parse(getUserData));
       if (!JSON.parse(getUserData)?.[currentUser]) {
-        console.log("no userData with current user Logged....create a db");
         const modifyUserData = {
           ...JSON.parse(getUserData),
           [currentUser]: initialState,
         };
         localStorage.setItem("userData", JSON.stringify(modifyUserData));
       }
-      console.log(
-        " getUserData found with current user",
-        JSON.parse(getUserData)
-      );
 
       const updateUserDataOnRankClicked = {
         ...JSON.parse(getUserData),
@@ -47,18 +40,18 @@ const Poll = ({ setIsActive }) => {
     }
   }, [rankings]);
 
-  console.log("rankings", rankings);
-
   return (
     <div>
-      <div className="mx-auto mt-8 max-w-[380px] text-center space-y-2 ">
-        <h1 className="text-xl mb-4">
-          Welcome, {localStorage.getItem("user").toUpperCase()}{" "}
+      <div className="mx-auto mt-8 max-w-[360px]   sm:max-w-[570px]  text-center space-y-2 ">
+        <h1 className="text-2xl mb-4">
+          Welcome,{"  "}
+          <span className="text-indigo-800 font-semibold">
+            {localStorage.getItem("user")?.toUpperCase()}{" "}
+          </span>
         </h1>
-        <p className="text-base">
-          Please rate our dishes as 1st,2nd or 3rd. {/* </p> */}
-          {/* <p> */}
-          Dish ranked 1,2 and 3 will allocate 30, 20 and 10 points accorndingly
+        <p className="text-lg text-gray-600 ">
+          Please rate our dishes as 1, 2, or 3. The dishes will receive 30, 20,
+          and 10 points, respectively.
         </p>
       </div>
       <div className=" flex w-10/12 flex-wrap justify-center mx-auto my-10">

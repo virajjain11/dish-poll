@@ -5,16 +5,13 @@ const DishCard = ({ dish, setRankings, rankings }) => {
 
   const handleRank = (e) => {
     const [dishRank, dishId, dishName] = e.currentTarget.id.split("-");
-    console.log(dishRank, dishName);
 
     let [isDishPresent] = Object.keys(rankings).filter(
       (rank) => rankings[rank] === `${dishId}-${dishName}`
     );
-    console.log("keys", isDishPresent);
     if (isDishPresent) {
       //add remove rank option if clicked on same button
       if (isDishPresent === dishRank) {
-        console.log("sameee button clicked...remove rannk");
         setRankings((prev) => ({
           ...prev,
           [dishRank]: null,
@@ -67,9 +64,6 @@ const DishCard = ({ dish, setRankings, rankings }) => {
               </>
             ))}
           </div>
-          {/* <div className="text-center tracking-widest mt-4 mx-auto max-w-[80px] px-4 py-2  bg-pink-400">
-            CLEAR
-          </div> */}
         </div>
       </div>
     </>

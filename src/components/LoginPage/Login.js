@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const users = require("../../resources/users.json");
 
 const Login = () => {
+  const passwordEle = useRef();
   const navigate = useNavigate();
   useEffect(() => {
     const userLoggedIn = localStorage.getItem("user");
     // console.log(userLoggedIn);
     if (userLoggedIn) {
-      navigate("/home");
+      navigate("/home/poll");
     }
   }, []);
 
@@ -22,8 +23,15 @@ const Login = () => {
   };
   const [error, setError] = useState(initialErrorState);
   const [credentials, setCredentials] = useState(initialValue);
+  const handleUsernameKey = (e) => {
+    if (e.charCode === 13) passwordEle.current.focus();
+  };
+  const handlePasswordKey = (e) => {
+    if (e.charCode === 13) handleSubmit(e);
+  };
 
   const handleLoginCredentials = (e) => {
+    console.log("e.keyCode", e.charCode === 13);
     setCredentials((prevVal) => ({
       ...prevVal,
       [e.target.name]: e.target.value,
@@ -70,17 +78,18 @@ const Login = () => {
   // console.log(error, error.username);
   return (
     <>
-      <section className="h-full w-full gradient-form bg-gray-200 md:h-screen">
-        {/* <div className="container "> */}
+      <section className="h-full w-full gradient-form sm:bg-gray-200 md:h-screen">
         <div className="flex container justify-center py-12 px-6 items-center flex-wrap h-full text-gray-800">
           <div className=" bg-white shadow-lg rounded-lg">
-            <div className="bg-indigo-500">
-              <h4 className="text-xl font-semibold p-4 mb-8  text-center">
+            <div className="bg-indigo-500 rounded-t-lg">
+              <h4 className="text-xl font-semibold p-4 text-center">
                 Dish POLL{" "}
               </h4>
             </div>
-            <form className="p-4 md:p-12 ">
-              <p className="mb-4 text-center">Login</p>
+            <form className="px-4 py-8 md:px-12 md:py-12 ">
+              <p className="mb-4 text-gray-600 md:mb-8 uppercase text-center">
+                Login to Dishpoll
+              </p>
               <div className="mb-4">
                 <input
                   type="text"
@@ -88,6 +97,7 @@ const Login = () => {
                   className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:border-blue-600 "
                   placeholder="Username"
                   value={credentials.username || ""}
+                  onKeyPress={handleUsernameKey}
                   onChange={handleLoginCredentials}
                 />
               </div>
@@ -95,9 +105,11 @@ const Login = () => {
                 <input
                   type="password"
                   name="password"
+                  ref={passwordEle}
                   className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700  focus:border-blue-600 "
                   value={credentials.password || ""}
                   placeholder="Password"
+                  onKeyPress={handlePasswordKey}
                   onChange={handleLoginCredentials}
                 />
               </div>
@@ -109,18 +121,20 @@ const Login = () => {
                 >
                   Log in
                 </button>
-                {/* {error.isError && (
-                  <> */}
-                <p className="text-gray-500 w-[250px] ">
-                  {error.errorCondition}
-                </p>
-                {/* </>
-                )} */}
+                {/* {error.isError && ( */}
+                <div>
+                  <p className="text-gray-500 w-[250px] ">
+                    {error.errorCondition}
+                  </p>
+                  <p className="text-gray-500 pt-4 w-[250px]">
+                    check console for credentials
+                  </p>
+                </div>
+                {/* )} */}
               </div>
             </form>
           </div>
         </div>
-        {/* </div> */}
       </section>
     </>
   );

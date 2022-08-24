@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Navbar/Navbar";
 import DishCard from "./DishCard";
-import { useNavigate } from "react-router-dom";
 const data = require("../../resources/db.json");
 
 const Poll = () => {
-  //   console.log("db", data);
-  const navigate = useNavigate();
-
   const initialState = {
     1: null,
     2: null,
     3: null,
   };
   const [rankings, setRankings] = useState(initialState);
+
   useEffect(() => {
     const currentUser = localStorage.getItem("user");
     if (currentUser) {
@@ -54,8 +50,12 @@ const Poll = () => {
 
   return (
     <div>
-      <Navbar />
-      <h1>Please rate our dishes</h1>
+      <div className="flex justify-center flex-col max-w-[380px] text-center space-y-2 ">
+        <h1 className="text-xl">Please rate our dishes as 1st,2nd or 3rd</h1>
+        <p>
+          Dish ranked 1,2 and 3 will allocate 30, 20 and 10 points accorndingly
+        </p>
+      </div>
       <div className=" flex w-10/12 flex-wrap justify-center mx-auto my-10">
         {data.map((dish, index) => (
           <>

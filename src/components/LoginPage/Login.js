@@ -53,7 +53,7 @@ const Login = () => {
       setError(initialErrorState);
       const loggedInUser = users.filter((eachUser) => {
         if (
-          (eachUser.username === credentials.username) &
+          (eachUser.username === credentials.username.toLowerCase()) &
           (eachUser.password === credentials.password)
         ) {
           return eachUser.username;

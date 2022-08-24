@@ -9,8 +9,10 @@ const Result = ({ setIsActive }) => {
   useEffect(() => {
     const jsonData = localStorage.getItem("userData");
     const fetchUserData = JSON.parse(jsonData);
-    const getAllUserValues = Object.values(fetchUserData);
-    setRawUserData(getAllUserValues);
+    if (!!fetchUserData) {
+      const getAllUserValues = Object.values(fetchUserData);
+      setRawUserData(getAllUserValues);
+    }
     setIsActive(2);
   }, []);
 

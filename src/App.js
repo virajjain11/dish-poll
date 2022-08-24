@@ -7,12 +7,12 @@ import Navbar from "./components/Navbar/Navbar";
 function App() {
   return (
     <BrowserRouter>
-      {/* <Navbar /> */}
+      <Navbar />
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Poll />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/home/poll" element={<Poll />} />
         <Route path="/home/result" element={<Result />} />
-        <Route path="*" element={<Navigate to={"/"} />} />
+        <Route path="*" element={<Navigate to={"/login"} />} />
       </Routes>
     </BrowserRouter>
   );

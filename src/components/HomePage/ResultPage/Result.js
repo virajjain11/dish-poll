@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../Navbar/Navbar";
 import PointsTable from "./PointsTable";
 
-const Result = () => {
+const Result = ({ setIsActive }) => {
   const [rawUserData, setRawUserData] = useState([]);
   let dishPointsData = {};
   const points = [30, 20, 10];
@@ -12,27 +11,18 @@ const Result = () => {
     const fetchUserData = JSON.parse(jsonData);
     const getAllUserValues = Object.values(fetchUserData);
     setRawUserData(getAllUserValues);
+    setIsActive(2);
   }, []);
 
   rawUserData.forEach((obj) => {
-    // console.log("each objjjj", obj);
     Object.entries(obj).forEach(([key, value], index) => {
-      // console.log("keyy:valueee", key, value, points[+key - 1], points);
       if (!!value) {
         if (value in dishPointsData) {
-          // console.log(
-          //   "present in dishPoints",
-          //   dishPointsData[value],
-          //   "before...."
-          // );
-
           dishPointsData = {
             ...dishPointsData,
             [value]: dishPointsData[value] + points[+key - 1],
           };
         } else {
-          // console.log("not present....create new");
-
           dishPointsData = {
             ...dishPointsData,
             [value]: points[+key - 1],
@@ -44,12 +34,11 @@ const Result = () => {
   const sortedDishes = Object.entries(dishPointsData).sort(
     (a, b) => b[1] - a[1]
   );
-  // .filter((el, idx) => idx < 3);
   console.log(dishPointsData);
 
   return (
-    <div>
-      {/* <Navbar /> */}
+    <div className="mt-4">
+      <h1 className="text-center mb-2 text-lg text-gray-800">Poll Results</h1>
       <PointsTable DishData={sortedDishes} />
     </div>
   );

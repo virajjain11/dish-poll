@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DishCard from "./DishCard";
 const data = require("../../../resources/db.json");
 
-const Poll = () => {
+const Poll = ({ setIsActive }) => {
   const initialState = {
     1: null,
     2: null,
@@ -11,6 +11,7 @@ const Poll = () => {
   const [rankings, setRankings] = useState(initialState);
 
   useEffect(() => {
+    setIsActive(1);
     const currentUser = localStorage.getItem("user");
     if (currentUser) {
       const getUserData = localStorage.getItem("userData");

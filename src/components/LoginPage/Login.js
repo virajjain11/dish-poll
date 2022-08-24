@@ -7,10 +7,10 @@ const Login = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const userLoggedIn = localStorage.getItem("user");
-    // console.log(userLoggedIn);
     if (userLoggedIn) {
       navigate("/home/poll");
     }
+    console.log("user credentials: ", users);
   }, []);
 
   const initialValue = {
@@ -31,7 +31,6 @@ const Login = () => {
   };
 
   const handleLoginCredentials = (e) => {
-    console.log("e.keyCode", e.charCode === 13);
     setCredentials((prevVal) => ({
       ...prevVal,
       [e.target.name]: e.target.value,
@@ -40,7 +39,6 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("credentials", credentials);
 
     if (credentials.username < 1 && credentials.password < 1) {
       setError({
@@ -69,13 +67,11 @@ const Login = () => {
         });
       } else {
         localStorage.setItem("user", loggedInUser[0].username);
-        // console.log("loggedInUser", loggedInUser);
         navigate("/home");
       }
       setCredentials(initialValue);
     }
   };
-  // console.log(error, error.username);
   return (
     <>
       <section className="h-full w-full gradient-form sm:bg-gray-200 md:h-screen">

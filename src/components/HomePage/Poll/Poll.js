@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DishCard from "./DishCard";
-const data = require("../../resources/db.json");
+const data = require("../../../resources/db.json");
 
 const Poll = () => {
   const initialState = {

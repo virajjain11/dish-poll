@@ -36,7 +36,7 @@ const DishCard = ({ dish, setRankings, rankings }) => {
   return (
     <>
       <div className="rounded-lg shadow-lg bg-white max-w-sm  mx-5 mb-10">
-        <h5 className="text-gray-900 text-xl font-medium  text-center bg-indigo-100 py-4 rounded-t-lg">
+        <h5 className="text-gray-900 text-xl font-medium text-center bg-indigo-100 py-4 rounded-t-lg">
           {dish.dishName}
         </h5>
         <img className="rounded-b-lg w-full " src={dish.image} alt="" />
@@ -77,5 +77,3 @@ const DishCard = ({ dish, setRankings, rankings }) => {
 };
 
 export default DishCard;
-
-// focus:bg-blue-700 focus:shadow-lg focus:outline-none active:bg-indigo-300 active:shadow-lg

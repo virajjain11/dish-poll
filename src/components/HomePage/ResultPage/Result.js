@@ -49,8 +49,7 @@ const Result = () => {
 
   return (
     <div>
-      <Navbar />
-      <h1>Result</h1>
+      {/* <Navbar /> */}
       <PointsTable DishData={sortedDishes} />
     </div>
   );

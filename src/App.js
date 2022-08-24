@@ -1,6 +1,6 @@
 import Login from "./components/LoginPage/Login";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Poll from "./components/HomePage/Poll";
+import Poll from "./components/HomePage/Poll/Poll";
 import Result from "./components/HomePage/ResultPage/Result";
 import Navbar from "./components/Navbar/Navbar";
 

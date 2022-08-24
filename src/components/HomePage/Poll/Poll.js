@@ -51,9 +51,13 @@ const Poll = ({ setIsActive }) => {
 
   return (
     <div>
-      <div className="flex justify-center flex-col max-w-[380px] text-center space-y-2 ">
-        <h1 className="text-xl">Please rate our dishes as 1st,2nd or 3rd</h1>
-        <p>
+      <div className="mx-auto mt-8 max-w-[380px] text-center space-y-2 ">
+        <h1 className="text-xl mb-4">
+          Welcome, {localStorage.getItem("user").toUpperCase()}{" "}
+        </h1>
+        <p className="text-base">
+          Please rate our dishes as 1st,2nd or 3rd. {/* </p> */}
+          {/* <p> */}
           Dish ranked 1,2 and 3 will allocate 30, 20 and 10 points accorndingly
         </p>
       </div>
